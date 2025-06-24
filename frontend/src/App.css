@@ -1,38 +1,269 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 .App {
-    text-align: center;
+  text-align: left;
 }
 
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
 }
 
-.App-link {
-    color: #61dafb;
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+/* Custom animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Button hover effects */
+.btn-hover {
+  transition: all 0.3s ease;
+  transform: translateY(0);
+}
+
+.btn-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Custom gradient backgrounds */
+.gradient-blue {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.gradient-ocean {
+  background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+}
+
+/* Menu item styling */
+.menu-item {
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
+}
+
+.menu-item:hover {
+  border-left-color: #3b82f6;
+  background-color: #f8fafc;
+}
+
+/* Order summary styling */
+.order-summary {
+  position: sticky;
+  top: 20px;
+}
+
+/* QR Code styling */
+.qr-code-container {
+  background: linear-gradient(45deg, #f0f9ff, #e0f2fe);
+  border: 2px dashed #3b82f6;
+}
+
+/* Responsive design enhancements */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.25rem;
+  }
+  
+  .grid-responsive {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Loading spinner */
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3b82f6;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Status badges */
+.status-pending {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.status-confirmed {
+  @apply bg-green-100 text-green-800;
+}
+
+.status-preparing {
+  @apply bg-blue-100 text-blue-800;
+}
+
+.status-completed {
+  @apply bg-green-100 text-green-800;
+}
+
+.status-cancelled {
+  @apply bg-red-100 text-red-800;
+}
+
+/* Form styling */
+.form-input {
+  @apply w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors;
+}
+
+.form-input:focus {
+  outline: none;
+}
+
+/* Button variants */
+.btn-primary {
+  @apply bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300;
+}
+
+.btn-secondary {
+  @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-lg transition duration-300;
+}
+
+.btn-success {
+  @apply bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300;
+}
+
+.btn-danger {
+  @apply bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300;
+}
+
+/* Admin dashboard specific styling */
+.admin-card {
+  @apply bg-white rounded-lg shadow-lg p-6 card-hover;
+}
+
+.admin-stats {
+  @apply text-center p-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg;
+}
+
+/* Mobile menu enhancements */
+.mobile-menu {
+  @apply fixed inset-x-0 top-0 z-50 bg-white shadow-lg;
+}
+
+/* Hotel specific styling */
+.hotel-amenity {
+  @apply flex items-center space-x-3 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow;
+}
+
+.room-card {
+  @apply bg-white rounded-lg shadow-lg overflow-hidden card-hover;
+}
+
+.price-tag {
+  @apply text-2xl font-bold text-blue-600;
+}
+
+/* Order item styling */
+.order-item {
+  @apply flex justify-between items-center p-3 border-b border-gray-200 hover:bg-gray-50 transition-colors;
+}
+
+.quantity-controls {
+  @apply flex items-center space-x-2;
+}
+
+.quantity-btn {
+  @apply w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center text-gray-700 font-bold transition-colors;
+}
+
+/* Hero section specific */
+.hero-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+}
+
+/* Feature cards */
+.feature-card {
+  @apply text-center p-6 bg-white rounded-lg shadow-lg card-hover;
+}
+
+.feature-icon {
+  @apply text-4xl mb-4 text-blue-600;
+}
+
+/* Booking form specific */
+.booking-form {
+  @apply space-y-4 bg-white p-6 rounded-lg shadow-lg;
+}
+
+.booking-summary {
+  @apply bg-gray-50 p-4 rounded-lg border-l-4 border-blue-500;
+}
+
+/* Menu category styling */
+.menu-category {
+  @apply bg-white rounded-lg shadow-lg p-6 mb-6;
+}
+
+.menu-category-title {
+  @apply text-2xl font-semibold mb-4 text-gray-800 border-b-2 border-blue-500 pb-2;
+}
+
+/* Responsive grid fixes */
+@media (max-width: 640px) {
+  .grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .md\:grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .md\:grid-cols-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1024px) {
+  .lg\:grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
